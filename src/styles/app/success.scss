@@ -1,0 +1,24 @@
+.success {
+  @apply flex flex-col items-center justify-center mx-auto h-[41rem];
+
+  h1 {
+    @apply text-2xl font-bold text-gray-100 text-center;
+  }
+
+  &-image {
+    @apply w-full max-w-[8.125rem] h-[9rem] rounded-lg p-1 flex items-center justify-center mt-16;
+    background: linear-gradient(180deg, #1ea483 0%, #7465d4 100%);
+
+    img {
+      @apply object-cover;
+    }
+  }
+
+  p {
+    @apply text-xl leading-relaxed text-gray-500 max-w-[35rem] text-center mt-8;
+  }
+
+  a {
+    @apply block font-bold text-lg text-green-500 mt-20 transition-all duration-200 ease-in-out hover:text-green-300;
+  }
+}

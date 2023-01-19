@@ -1,0 +1,36 @@
+.product {
+  @apply h-full flex items-center;
+
+  &-card {
+    @apply grid grid-cols-2 items-stretch gap-16 max-w-6xl mx-auto pb-8;
+  }
+
+  &-image {
+    @apply w-full max-w-xl h-[41rem] rounded-lg p-1 flex items-center justify-center;
+    background: linear-gradient(180deg, #1ea483 0%, #7465d4 100%);
+
+    img {
+      @apply object-cover;
+    }
+  }
+
+  &-info {
+    @apply flex flex-col;
+
+    h1 {
+      @apply text-2xl font-bold text-gray-300;
+    }
+
+    span {
+      @apply mt-4 block text-2xl text-green-300;
+    }
+
+    p {
+      @apply mt-10 text-md leading-relaxed text-gray-300;
+    }
+
+    button {
+      @apply mt-auto bg-green-500 text-white rounded-lg p-5 cursor-pointer font-bold text-md transition-all duration-200 ease-in-out hover:bg-green-300 disabled:cursor-not-allowed disabled:opacity-60;
+    }
+  }
+}

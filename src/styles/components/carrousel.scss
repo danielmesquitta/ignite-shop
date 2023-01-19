@@ -1,0 +1,32 @@
+.carrousel {
+  @apply flex w-full min-h-[41rem];
+  max-width: calc(1152px + ((100vw - 1152px) / 2));
+  margin-left: calc((100vw - 1152px) / 2);
+
+  &-item {
+    @apply rounded-lg cursor-pointer relative flex items-center justify-center overflow-hidden;
+    background: linear-gradient(180deg, #1ea483 0%, #7465d4 100%);
+
+    &:hover {
+      .carrousel-item-footer {
+        @apply translate-y-0 opacity-100;
+      }
+    }
+
+    img {
+      @apply object-cover;
+    }
+
+    &-footer {
+      @apply absolute bottom-1 left-1 right-1 p-8 rounded-md flex items-center justify-between bg-shadow-600 translate-y-full opacity-0 transition-all duration-200 ease-in-out;
+
+      strong {
+        @apply text-lg;
+      }
+
+      span {
+        @apply text-xl font-bold text-green-300;
+      }
+    }
+  }
+}

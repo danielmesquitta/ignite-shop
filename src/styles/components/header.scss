@@ -1,0 +1,15 @@
+.header {
+  @apply sticky top-0 w-full z-10 bg-gray-900 border-b border-b-gray-800;
+
+  &-content {
+    @apply py-8 w-full max-w-6xl mx-auto flex items-center justify-between;
+  }
+
+  &-handbag {
+    @apply relative flex items-center justify-center w-12 h-12 rounded-md bg-gray-800;
+
+    &-count {
+      @apply absolute flex items-center justify-center bg-green-500 text-white text-sm font-bold w-6 h-6 rounded-full top-0 right-0 translate-x-1/2 -translate-y-1/2;
+    }
+  }
+}

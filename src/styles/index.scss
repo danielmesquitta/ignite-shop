@@ -1,0 +1,14 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/utilities';
+
+@import "./global.scss";
+
+@import "./components/aside.scss";
+@import "./components/carrousel.scss";
+@import "./components/header.scss";
+@import "./components/loading.scss";
+
+@import "./app/home.scss";
+@import "./app/product.scss";
+@import "./app/root-layout.scss";
+@import "./app/success.scss";
