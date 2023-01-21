@@ -24,7 +24,9 @@ export const Header = () => {
         <button className="header-handbag" onClick={handleHandbagClick}>
           <Image src="/handbag.svg" alt="" width={24} height={24} />
 
-          <span className="header-handbag-count">{cart.length}</span>
+          {cart.length > 0 && (
+            <span className="header-handbag-count">{cart.length}</span>
+          )}
         </button>
       </div>
     </header>

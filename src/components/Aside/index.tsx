@@ -4,9 +4,14 @@ import axios from 'axios'
 import Image from 'next/image'
 import { useState } from 'react'
 import { useAsideContext } from '~/contexts/aside'
+import { useCartContext } from '~/contexts/cart'
+import { CheckoutRequestBody } from '~/pages/api/checkout'
+import { currencyFormatter } from '~/utils/formatter'
 import { Card } from './Card'
 
 export const Aside = () => {
+  const { cart, totalPrice, emptyCart } = useCartContext()
+
   const { isVisible, setIsVisible } = useAsideContext()
 
   const [isLoading, setIsLoading] = useState(false)
@@ -20,9 +25,11 @@ export const Aside = () => {
 
     try {
       const { data } = await axios.post('/api/checkout', {
-        priceId: '2021-08-01',
+        products: cart.map(({ priceId }) => ({ priceId })),
         cancelUrl: window.location.href,
-      })
+      } as CheckoutRequestBody)
+
+      emptyCart()
 
       window.location.href = data.url
     } catch {
@@ -48,20 +55,22 @@ export const Aside = () => {
         </header>
 
         <div className="aside-content">
-          <Card imageUrl="" name="Camiseta" price={120} />
-
-          <Card imageUrl="" name="Camiseta" price={30} />
+          {cart.map(({ id, imageUrl, name, price }) => (
+            <Card key={id} {...{ id, imageUrl, name, price }} />
+          ))}
         </div>
 
         <footer className="aside-footer">
           <small>
             <span>Quantidade</span>
-            <span>3 itens</span>
+            <span>{`${cart.length} ${
+              cart.length === 1 ? 'item' : 'itens'
+            }`}</span>
           </small>
 
           <p>
             <span>Valor total</span>
-            <span>R$ 270,00</span>
+            <span>{currencyFormatter.format(totalPrice / 100)}</span>
           </p>
 
           <button

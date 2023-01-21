@@ -2,7 +2,13 @@
 
 import cookies from 'js-cookie'
 
-import { createContext, useCallback, useContext, useReducer } from 'react'
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useReducer
+} from 'react'
 import { cartReducer, storageCartKey } from '~/reducers/cart'
 import {
   addProductAction,
@@ -10,6 +16,7 @@ import {
   removeProductAction
 } from '~/reducers/cart/actions'
 import { Product } from '~/types/Product'
+import { useAsideContext } from '../aside'
 import type { CartContextData, CartContextProviderProps } from './types'
 
 const CartContext = createContext({} as CartContextData)
@@ -20,6 +27,8 @@ const initialCartState = {
 }
 
 export const CartContextProvider = ({ children }: CartContextProviderProps) => {
+  const { setIsVisible } = useAsideContext()
+
   const [cartState, dispatch] = useReducer(
     cartReducer,
     initialCartState,
@@ -45,6 +54,12 @@ export const CartContextProvider = ({ children }: CartContextProviderProps) => {
   const emptyCart = useCallback(() => {
     dispatch(emptyCartAction())
   }, [])
+
+  useEffect(() => {
+    if (cartState.cart.length === 0) {
+      setIsVisible(false)
+    }
+  }, [cartState.cart, setIsVisible])
 
   return (
     <CartContext.Provider

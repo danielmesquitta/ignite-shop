@@ -1,5 +1,4 @@
 import { GetStaticPaths } from 'next'
-import { CartContextProvider } from '~/contexts/cart'
 import { fetchStripeApi } from '~/services/fetchStripeApi'
 import { StripeProduct } from '~/types/StripeProduct'
 import { StripeResponse } from '~/types/StripeResponse'
@@ -18,16 +17,14 @@ const ProductPage = async ({ params }: ProductPageProps) => {
 
   return (
     <div className="product">
-      <CartContextProvider>
-        <ProductCard
-          id={product.id}
-          name={product.name}
-          description={product.description!}
-          imageUrl={product.images[0]}
-          price={product.default_price.unit_amount!}
-          priceId={product.default_price.id}
-        />
-      </CartContextProvider>
+      <ProductCard
+        id={product.id}
+        name={product.name}
+        description={product.description!}
+        imageUrl={product.images[0]}
+        price={product.default_price.unit_amount!}
+        priceId={product.default_price.id}
+      />
     </div>
   )
 }

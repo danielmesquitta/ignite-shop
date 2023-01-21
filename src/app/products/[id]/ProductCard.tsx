@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import { useAsideContext } from '~/contexts/aside'
 import { useCartContext } from '~/contexts/cart'
 import { Product } from '~/types/Product'
 import { currencyFormatter } from '~/utils/formatter'
@@ -14,10 +15,9 @@ export const ProductCard = ({
   priceId,
 }: Product) => {
   const { addProduct } = useCartContext()
+  const { setIsVisible } = useAsideContext()
 
   const handleAddToCart = () => {
-    console.log('add to cart')
-
     addProduct({
       id,
       imageUrl,
@@ -26,6 +26,8 @@ export const ProductCard = ({
       description,
       priceId,
     })
+
+    setIsVisible(true)
   }
 
   return (

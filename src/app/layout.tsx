@@ -40,10 +40,10 @@ export default function RootLayout({ children }: RootLayoutProps) {
               <Header />
 
               <Aside />
+
+              {children}
             </CartContextProvider>
           </AsideContextProvider>
-
-          {children}
         </div>
       </body>
     </html>
